@@ -17,6 +17,8 @@ export const startFlow = (
   nextStep: DMFlowStep = DMFlowStep.SET_NAME
 ) => {
   // TODO: Create a new flow for a the given user for a new group in the given channel
+
+  setNextStep(ownerUserId, nextStep);
 };
 
 export const setName = (
