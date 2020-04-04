@@ -1,11 +1,9 @@
-import { Client, Message, TextChannel } from 'discord.js';
+import { Message, TextChannel } from 'discord.js';
 
 import { Config } from '@lfg/types';
 import { startFlow } from '@lfg/services/DMFlowService';
 
 export default (message: Message, config: Config) => {
-  // TODO: initialize DM flow, send DM to sender telling them first step
-
   // Only allow this command in a server, not in a DM
   if (message.channel.type !== 'text') return;
 

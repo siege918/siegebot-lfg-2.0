@@ -82,7 +82,8 @@ export const getGroup = (ownerUserId: Snowflake): Group => {
     groupName: flowInfo.groupName,
     ownerUserId: flowInfo.ownerUserId,
     startTime: flowInfo.startTime,
-    playerLimit: flowInfo.playerLimit
+    playerLimit: flowInfo.playerLimit,
+    players: []
   };
 };
 

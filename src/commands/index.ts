@@ -1,3 +1,4 @@
 import create from './Create';
+import addPlayerToGroup from './addPlayerToGroup';
 
-export { create };
+export { addPlayerToGroup, create };

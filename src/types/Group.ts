@@ -7,4 +7,6 @@ export default interface Group {
   ownerUserId: Snowflake;
   playerLimit?: number;
   startTime: Date;
+
+  players: Snowflake[];
 }
