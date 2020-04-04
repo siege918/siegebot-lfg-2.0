@@ -17,8 +17,6 @@ export const startFlow = (
   nextStep: DMFlowStep = DMFlowStep.SET_NAME
 ) => {
   // TODO: Create a new flow for a the given user for a new group in the given channel
-
-  setNextStep(ownerUserId, nextStep);
 };
 
 export const setName = (
@@ -32,8 +30,6 @@ export const setName = (
   if (!flowInfo || flowInfo.step !== DMFlowStep.SET_NAME) return;
 
   // TODO: database logic here
-
-  setNextStep(ownerUserId, nextStep);
 };
 
 export const setTime = (
@@ -47,8 +43,6 @@ export const setTime = (
   if (!flowInfo || flowInfo.step !== DMFlowStep.SET_TIME) return;
 
   // TODO: database logic here
-
-  setNextStep(ownerUserId, nextStep);
 };
 
 export const setPlayerLimit = (
@@ -62,8 +56,6 @@ export const setPlayerLimit = (
   if (!flowInfo || flowInfo.step !== DMFlowStep.SET_PLAYER_LIMIT) return;
 
   // TODO: database logic here
-
-  setNextStep(ownerUserId, nextStep);
 };
 
 export const getGroup = (ownerUserId: Snowflake): Group => {
