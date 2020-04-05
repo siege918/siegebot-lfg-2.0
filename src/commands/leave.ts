@@ -1,7 +1,7 @@
 import { Message, TextChannel } from 'discord.js';
 
 import { Config } from '@lfg/types';
-import { addPlayerToGroup, getGroup } from '@lfg/services/GroupService';
+import { removePlayerFromGroup, getGroup } from '@lfg/services/GroupService';
 
 export default (message: Message, config: Config) => {
   const splitMessage = message.content.split(/\s+/);
@@ -9,7 +9,7 @@ export default (message: Message, config: Config) => {
 
   const group = getGroup(groupId);
 
-  // No group with the given ID
+  // No group with given ID
   if (!group) {
     message.author.send(
       `Couldn't find group for ID ${groupId}. Did you type it in correctly?`
@@ -35,18 +35,18 @@ export default (message: Message, config: Config) => {
   // User should only use this command either in the channel where the room is created or in a DM
   if (message.channel.type !== 'dm' && message.channel.id !== group.channelId) {
     message.author.send(
-      'You should only use the join command in either a DM or the channel where the group was created.'
+      'You should only use the leave command in either a DM or the channel where the group was created.'
     );
   }
 
-  // Can't join the same group twice
-  if (group.players.includes(message.author.id)) {
-    message.author.send(`You're already in the group \`${group.groupName}\`.`);
+  // User can't leave a group they're not in
+  if (!group.players.includes(message.author.id)) {
+    message.author.send(`You're not in the group \`${group.groupName}\`.`);
     return;
   }
 
-  addPlayerToGroup(message.author.id, groupId);
+  removePlayerFromGroup(message.author.id, groupId);
 
-  // DM the user confirming they've been added to the group
-  message.author.send(`You have joined the group \`${group.groupName}\``);
+  // Send user a DM confirming that they've left the group
+  message.author.send(`You have left the group \`${group.groupName}\``);
 };
