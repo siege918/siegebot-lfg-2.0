@@ -1,0 +1,34 @@
+{
+  "name": "siegebot-lfg-stack",
+  "version": "2.0.0",
+  "description": "A bot plugin to organize gaming groups and handle scheduling and notification.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:clean": "tsc --build --clean",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy",
+    "diff": "cdk diff",
+    "buildAndSynth": "npm run build && npm run synth",
+    "getTableName": "aws cloudformation describe-stacks --stack-name Siegebot --query \"Stacks[0].Outputs[?ExportName=='LfgTableName'].OutputValue\" --output text",
+    "getTableArn": "aws cloudformation describe-stacks --stack-name Siegebot --query \"Stacks[0].Outputs[?ExportName=='LfgTableArn'].OutputValue\" --output text"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siege918/siegebot-lfg-2.0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/siege918/siegebot-lfg-2.0/issues"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-dynamodb": "^1.31.0",
+    "@aws-cdk/aws-rds": "^1.31.0",
+    "@aws-cdk/core": "^1.31.0",
+    "aws-cdk": "^1.31.0"
+  },
+  "dependencies": {
+    "typescript": "^3.8.0"
+  }
+}

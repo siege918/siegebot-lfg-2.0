@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "esnext",
     "module": "commonjs",
     "declaration": false,
     "outDir": "dist",
-    "types": ["discord.js", "node"],
+    "types": ["node"],
     "strict": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
@@ -12,11 +12,8 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "strictPropertyInitialization": false,
-    "baseUrl": ".",
-    "paths": {
-      "@lfg/*": ["src/*"]
-    }
+    "baseUrl": "."
   },
-  "filesGlob": ["./lib/**/*.ts"],
-  "exclude": ["node_modules", "dist", "src/**/*.spec.ts"]
+  "filesGlob": ["./*.ts"],
+  "exclude": ["node_modules", "src/**/*.spec.ts"]
 }
