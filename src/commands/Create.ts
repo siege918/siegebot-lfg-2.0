@@ -1,11 +1,13 @@
 import { Message, TextChannel } from 'discord.js';
 
-import { Config } from '@lfg/types';
 import { startFlow } from '@lfg/services/DMFlowService';
+import { Config } from '@lfg/types';
 
 export default (message: Message, config: Config) => {
   // Only allow this command in a server, not in a DM
-  if (message.channel.type !== 'text') return;
+  if (message.channel.type !== 'text') {
+    return;
+  }
 
   const textChannel = message.channel as TextChannel;
 

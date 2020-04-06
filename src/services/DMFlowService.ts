@@ -27,7 +27,9 @@ export const setName = (
   // Set the group name, but only if current step is SET_NAME
   const flowInfo = getFlowInfo(ownerUserId);
 
-  if (!flowInfo || flowInfo.step !== DMFlowStep.SET_NAME) return;
+  if (!flowInfo || flowInfo.step !== DMFlowStep.SET_NAME) {
+    return;
+  }
 
   // TODO: database logic here
 };
@@ -40,7 +42,9 @@ export const setTime = (
   // Set the group start time, but only if current step is SET_TIME
   const flowInfo = getFlowInfo(ownerUserId);
 
-  if (!flowInfo || flowInfo.step !== DMFlowStep.SET_TIME) return;
+  if (!flowInfo || flowInfo.step !== DMFlowStep.SET_TIME) {
+    return;
+  }
 
   // TODO: database logic here
 };
@@ -53,7 +57,9 @@ export const setPlayerLimit = (
   // Set player limit, but only if current step is SET_PLAYER_LIMIT
   const flowInfo = getFlowInfo(ownerUserId);
 
-  if (!flowInfo || flowInfo.step !== DMFlowStep.SET_PLAYER_LIMIT) return;
+  if (!flowInfo || flowInfo.step !== DMFlowStep.SET_PLAYER_LIMIT) {
+    return;
+  }
 
   // TODO: database logic here
 };
@@ -66,8 +72,9 @@ export const getGroup = (ownerUserId: Snowflake): Group => {
     flowInfo.step !== DMFlowStep.CONFIRM ||
     !flowInfo.groupName ||
     !flowInfo.startTime
-  )
+  ) {
     throw new Error('Can only get the group from a completed flow');
+  }
 
   return {
     channelId: flowInfo.channelId,
@@ -83,7 +90,9 @@ export const endFlow = (ownerUserId: Snowflake) => {
   // Delete the flow from the database, but only if the current step is CONFIRM
   const flowInfo = getFlowInfo(ownerUserId);
 
-  if (!flowInfo || flowInfo.step !== DMFlowStep.CONFIRM) return;
+  if (!flowInfo || flowInfo.step !== DMFlowStep.CONFIRM) {
+    return;
+  }
 
   // TODO: database logic here
 };

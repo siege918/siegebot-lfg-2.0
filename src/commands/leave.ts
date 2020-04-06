@@ -1,7 +1,7 @@
 import { Message, TextChannel } from 'discord.js';
 
+import { getGroup, removePlayerFromGroup } from '@lfg/services/GroupService';
 import { Config } from '@lfg/types';
-import { removePlayerFromGroup, getGroup } from '@lfg/services/GroupService';
 
 export default (message: Message, config: Config) => {
   const splitMessage = message.content.split(/\s+/);

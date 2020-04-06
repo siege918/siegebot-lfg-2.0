@@ -13,7 +13,7 @@ export const getGroup = (groupId: string): Group | undefined => {
 };
 
 export const listGroups = (channelId: Snowflake) => {
-  //TODO: List all groups associated with the given channel ID
+  // TODO: List all groups associated with the given channel ID
 };
 
 export const createGroup = (group: Group) => {
