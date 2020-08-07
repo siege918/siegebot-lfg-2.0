@@ -1,7 +1,7 @@
 import { Snowflake } from 'discord.js';
 
 import DMFlowStep from './DMFlowStep';
-import Group from './Group';
+import { IGroup } from './Group';
 
 interface IDMFlow {
   step: DMFlowStep;
@@ -9,6 +9,6 @@ interface IDMFlow {
   ownerUserId: Snowflake;
 }
 
-type DMFlow = IDMFlow & Partial<Group>;
+type DMFlow = IDMFlow & Partial<IGroup>;
 
 export default DMFlow;
