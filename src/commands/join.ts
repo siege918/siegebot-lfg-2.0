@@ -1,13 +1,16 @@
+import IGroupService from '@lfg/services/IGroupService';
+import InMemoryGroupService from '@lfg/services/InMemoryGroupService';
+import { Config } from '@lfg/types';
 import { Message, TextChannel } from 'discord.js';
 
-import { addPlayerToGroup, getGroup } from '@lfg/services/GroupService';
-import { Config } from '@lfg/types';
+// TODO: When DDB stuff gets more firm the concrete service should be injected somehow per some config
+const groupService: IGroupService = new InMemoryGroupService();
 
 export default (message: Message, config: Config) => {
   const splitMessage = message.content.split(/\s+/);
   const groupId = splitMessage[1];
 
-  const group = getGroup(groupId);
+  const group = groupService.getGroup(groupId);
 
   // No group with the given ID
   if (!group) {
@@ -24,7 +27,7 @@ export default (message: Message, config: Config) => {
   // If this user isn't in the channel the group is attached to, they shouldn't be able to know it exists
   if (
     !groupChannel ||
-    !groupChannel.members.some(member => member.id === message.author.id)
+    !groupChannel.members.some((member) => member.id === message.author.id)
   ) {
     message.author.send(
       `Couldn't find group for ID ${groupId}. Did you type it in correctly?`
@@ -45,7 +48,8 @@ export default (message: Message, config: Config) => {
     return;
   }
 
-  addPlayerToGroup(message.author.id, groupId);
+  group.addPlayer(message.author.id);
+  groupService.updateGroup(group);
 
   // DM the user confirming they've been added to the group
   message.author.send(`You have joined the group \`${group.groupName}\``);

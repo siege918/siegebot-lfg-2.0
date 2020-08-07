@@ -1,6 +1,6 @@
 import { Snowflake } from 'discord.js';
 
-import { DMFlow, DMFlowStep, Group } from '@lfg/types';
+import { DMFlow, DMFlowStep, IGroup } from '@lfg/types';
 
 export const getFlowInfo = (ownerUserId: Snowflake): DMFlow | undefined => {
   // TODO: Get current step of the flow from the database
@@ -64,7 +64,7 @@ export const setPlayerLimit = (
   // TODO: database logic here
 };
 
-export const getGroup = (ownerUserId: Snowflake): Group => {
+export const getGroup = (ownerUserId: Snowflake): IGroup => {
   const flowInfo = getFlowInfo(ownerUserId);
 
   if (
@@ -82,7 +82,7 @@ export const getGroup = (ownerUserId: Snowflake): Group => {
     ownerUserId: flowInfo.ownerUserId,
     startTime: flowInfo.startTime,
     playerLimit: flowInfo.playerLimit,
-    players: []
+    players: [],
   };
 };
 
